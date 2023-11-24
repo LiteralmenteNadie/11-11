@@ -34,5 +34,16 @@ module.exports = (sequelize, DataTypes) => {
 
     const Model = sequelize.define(alias, cols, config);
 
+    Model.associate = (models) => {
+        // Si la relacion es uno a uno -> hasOne
+        // uno a muchos -> hasMany
+        // muchos a uno -> belongsTo
+        // muchos a muchos -> belongsToMany
+        Model.belongsTo(models.Categories, {
+            as: 'Category',
+            foreignKey: 'category_id'
+        })
+    }
+
     return Model;
 }

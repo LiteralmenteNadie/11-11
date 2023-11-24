@@ -11,8 +11,10 @@ const service = {
     }, // C
 
     findAll: async () => {
-        let prods = Products.findAll();
-        
+        let prods = await Products.findAll({
+            include: ["Category"]
+        });
+        console.log(prods);
         return prods;
     }, // R
     findById: async (id) => {
